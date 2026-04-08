@@ -86,16 +86,17 @@ describe("ScoutyClient", () => {
     );
   });
 
-  it("throws when the base URL is missing", () => {
+  it("falls back to the project API URL when the base URL is not configured", async () => {
     process.env.SCOUTY_API_KEY = "env-key";
     delete process.env.SCOUTY_BASE_URL;
+    const fetchMock = vi.fn(async () => createJsonResponse({ results: [] }));
 
-    expect(() => new ScoutyClient({ fetch: vi.fn() as typeof fetch })).toThrowError(
-      new ScoutyError(
-        "Missing base URL. Provide options.baseUrl or set SCOUTY_BASE_URL.",
-        { code: "config" },
-      ),
-    );
+    const client = new ScoutyClient({ fetch: fetchMock });
+
+    await client.search.text({ query: "weather" });
+
+    const request = getRequestDetails(fetchMock);
+    expect(request.url).toBe("https://api.scouty.dev/search/text");
   });
 
   it("serializes camelCase params and backend arrays to the API payload", async () => {

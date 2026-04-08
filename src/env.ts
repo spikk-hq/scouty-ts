@@ -1,3 +1,5 @@
+export const defaultBaseUrl = "https://api.scouty.dev";
+
 function normalizeOptionalString(value: string | undefined): string | undefined {
   const normalized = value?.trim();
   return normalized ? normalized : undefined;
@@ -16,5 +18,7 @@ export function resolveApiKey(explicitApiKey?: string): string | undefined {
 }
 
 export function resolveBaseUrl(explicitBaseUrl?: string): string | undefined {
-  return normalizeOptionalString(explicitBaseUrl) ?? getProcessEnv("SCOUTY_BASE_URL");
+  return normalizeOptionalString(explicitBaseUrl)
+    ?? getProcessEnv("SCOUTY_BASE_URL")
+    ?? defaultBaseUrl;
 }

@@ -1,5 +1,6 @@
 export { ScoutyClient } from "./client";
 export { ScoutyError } from "./errors";
+export { defaultBaseUrl } from "./env";
 export {
   safeSearchValues,
   textSearchBackends,
