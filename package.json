@@ -9,6 +9,14 @@
     "sdk",
     "typescript"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spikk-hq/scouty-ts.git"
+  },
+  "homepage": "https://github.com/spikk-hq/scouty-ts#readme",
+  "bugs": {
+    "url": "https://github.com/spikk-hq/scouty-ts/issues"
+  },
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.cjs",
