@@ -3,7 +3,7 @@ export const textSearchBackends = [
   "bing",
   "brave",
   "duckduckgo",
-  "google",
+  // "google",
   "grokipedia",
   "mojeek",
   "wikipedia",

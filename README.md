@@ -19,7 +19,7 @@ const client = new ScoutyClient({
 
 const response = await client.search.text({
   query: "weather",
-  backend: ["google", "brave"],
+  backend: ["brave", "bing"],
   maxResults: 10,
 });
 
@@ -56,7 +56,7 @@ If `apiKey` is not passed explicitly, the client falls back to `SCOUTY_API_KEY` 
 - `bing`
 - `brave`
 - `duckduckgo`
-- `google`
+<!-- - `google` -->
 - `wikipedia`
 - `yahoo`
 - `yandex`

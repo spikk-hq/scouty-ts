@@ -114,7 +114,8 @@ describe("ScoutyClient", () => {
       timelimit: "d",
       maxResults: 10,
       page: 2,
-      backend: ["Google" as never, "brave"],
+      // backend: ["Google" as never, "brave"],
+      backend: ["Brave" as never, "bing"],
     });
 
     const request = getRequestDetails(fetchMock);
@@ -125,7 +126,8 @@ describe("ScoutyClient", () => {
       timelimit: "d",
       max_results: 10,
       page: 2,
-      backend: "google,brave",
+      // backend: "google,brave",
+      backend: "brave,bing",
     });
   });
 
@@ -139,11 +141,13 @@ describe("ScoutyClient", () => {
 
     await client.search.text({
       query: "weather",
-      backend: "google",
+      // backend: "google",
+      backend: "brave",
     });
 
     const request = getRequestDetails(fetchMock);
-    expect(request.body.backend).toBe("google");
+    // expect(request.body.backend).toBe("google");
+    expect(request.body.backend).toBe("brave");
   });
 
   it("rejects duplicate engines", async () => {
@@ -156,7 +160,8 @@ describe("ScoutyClient", () => {
     await expect(
       client.search.text({
         query: "weather",
-        backend: ["google", "google"],
+        // backend: ["google", "google"],
+        backend: ["brave", "brave"],
       }),
     ).rejects.toMatchObject({
       name: "ScoutyError",
@@ -175,7 +180,8 @@ describe("ScoutyClient", () => {
     await expect(
       client.search.text({
         query: "weather",
-        backend: ["auto", "google"],
+        // backend: ["auto", "google"],
+        backend: ["auto", "brave"],
       }),
     ).rejects.toMatchObject({
       name: "ScoutyError",
@@ -223,7 +229,8 @@ describe("ScoutyClient", () => {
             title: "Weather",
             href: "https://example.com/weather",
             body: "Latest weather report",
-            source: "google",
+            // source: "google",
+            source: "brave",
           },
         ],
       }));
@@ -239,7 +246,8 @@ describe("ScoutyClient", () => {
           title: "Weather",
           href: "https://example.com/weather",
           body: "Latest weather report",
-          source: "google",
+          // source: "google",
+          source: "brave",
         },
       ],
     });
